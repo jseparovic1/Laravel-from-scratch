@@ -11,5 +11,9 @@
 |
 */
 
+<<<<<<< HEAD
+Route::get('/', 'PostsController@index');
+=======
 
 Route::get('/', 'PostsController@index');
+>>>>>>> parent of cf0d1f2... Created frontend layout
