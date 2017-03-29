@@ -1,6 +1,6 @@
-<div class="col-xs-4 col-lg-4 col-xs-4">
-    <h1 class="title">{{ $title }}</h1>
-    <p class="content">
-        {{ $slot }}
-    </p>
+<div class="col-sm-8 blog-main">
+    <div class="blog-post">
+        <h2 class="blog-post-title">{{ $title }}</h2>
+        <p>{{ $slot }}</p>
+    </div><!-- /.blog-post -->
 </div>

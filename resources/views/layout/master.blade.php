@@ -4,36 +4,36 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="@yield('description')">
-    <meta name="author" content="Jurica Šeparović">
+    <meta name="author" content="Jurica Šeparovic">
 
     <title>@yield('title')</title>
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <!-- Custom styles for this template -->
-    <link href="css/album.css" rel="stylesheet">
-
+    @include('layout.styles')
 </head>
-
 <body>
 
-@include('layout.header')
-
-<div class="jumbotron">
-    @section('featured')
-            <h1> Pršuting is awsome</h1>
-    @show
-</div>
-
-
-
-<div class="container">
-    <div class="row">
-        @yield('content')
+<div class="blog-masthead">
+    <div class="container">
+        @include('layout.nav')
     </div>
 </div>
 
+<div class="blog-header">
+    <div class="container">
+        @include('layout.header')
+    </div>
+</div>
 
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+            @yield('content')
+        </div>
+        <div class="col-sm-3 offset-sm-1 blog-sidebar">
+            @include('sidebar.index')
+        </div>
+    </div>
+</div>
 
 @include('layout.footer')
 
