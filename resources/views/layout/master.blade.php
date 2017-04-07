@@ -12,11 +12,7 @@
 </head>
 <body>
 
-<div class="blog-masthead">
-    <div class="container">
-        @include('layout.nav')
-    </div>
-</div>
+@include('layout.nav')
 
 <div class="blog-header">
     <div class="container">
@@ -29,9 +25,8 @@
         <div class="col-sm-8 blog-main">
             @yield('content')
         </div>
-        <div class="col-sm-3 offset-sm-1 blog-sidebar">
-            @include('sidebar.index')
-        </div>
+
+        @include('sidebar.index')
     </div>
 </div>
 
