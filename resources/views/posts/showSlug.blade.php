@@ -4,10 +4,6 @@
     {{ $post->title }}
 @endsection
 
-@section('description')
-    {{ $post->title }}
-@endsection
-
 @section('content')
     <div class="col-sm-8 blog-main">
         <div class="blog-post">
