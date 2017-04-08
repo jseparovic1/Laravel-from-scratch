@@ -15,10 +15,20 @@ class Post extends Model
     }
 
     /**
-     * Get all comments assiated with post
+     * Get all comments for given post
      */
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    /**
+     * Add new comment for given post
+     * @param $body comment body
+     */
+    public function addComment($body)
+    {
+        //this line also populate post_id in comment db table
+        $this->comments()->create(['body' => $body ]);
     }
 }
