@@ -13,4 +13,12 @@ class Post extends Model
     {
         return 'slug';
     }
+
+    /**
+     * Get all comments assiated with post
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
