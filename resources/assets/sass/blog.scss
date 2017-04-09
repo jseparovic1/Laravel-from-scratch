@@ -54,7 +54,7 @@ h6, .h6 {
 }
 .nav-link:hover,
 .nav-link:focus {
-  color: darken($navbar-link-color, 40%);
+  color: lighten($navbar-default-bg, 40%);
   background-color: transparent;
 }
 
@@ -76,6 +76,38 @@ h6, .h6 {
   border-left: .3rem solid transparent;
 }
 
+/* Nav right*/
+
+.nav-right {
+  margin-right: 0;
+  margin-left: auto;
+  color: white;
+    a {
+      font-weight : bold;
+    }
+}
+
+.link-right {
+  position: relative;
+  padding: 1rem;
+  font-weight: 500;
+  color: $navbar-link-color;
+}
+
+.link-right.active {
+  color: #fff;
+}
+
+.link-right {
+  display: inline-block;
+}
+
+.link-right:hover,
+.link-right:focus {
+  text-decoration: none;
+  color: lighten($navbar-default-bg, 40%);
+  background-color: transparent;
+}
 
 /*
  * Blog name and description

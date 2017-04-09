@@ -1,9 +1,7 @@
 @extends('layout.master')
 
-@section('title')
-    Virtualnoob | Latest news
-@endsection
-
+@section('title','Virtualnoob | Latest news')
+@section('blog-title', 'The blog')
 @section('description', 'Posts website, get fresh news from tech all day and night')
 
 {{-- main post layout --}}
@@ -17,12 +15,12 @@
                     </a>
                 </h2>
                 <p class="blog-post-meta">
+                    <i> {{ ucwords($post->user->name) }} </i> at
                     {{ $post->created_at->toFormattedDateString() }}
                 </p>
-                <p> {{$post->body}} </p>
+                <p> {{ $post->body }} </p>
                 <hr>
-                {{-- Post comment --}}
-                @include('posts.comment')
+                {{--@include('posts.comment')--}}
             </div><!-- /.blog-post -->
         </div>
     @endforeach

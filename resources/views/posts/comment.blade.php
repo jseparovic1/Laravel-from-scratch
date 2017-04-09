@@ -3,7 +3,10 @@
         @foreach($post->comments as $comment)
             <li class="list-group-item">
                 {{ $comment->body }}
-                <i class="pull-right">{{ $comment->created_at->diffForHumans() }}</i>
+                <div class="pull-right">
+                    <i class="text-info"> by {{ $comment->author->name }}</i>
+                    <i class="">{{ $comment->created_at->diffForHumans() }}</i>
+                </div>
             </li>
         @endforeach
     </div>

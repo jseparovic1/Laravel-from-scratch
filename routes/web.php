@@ -11,14 +11,29 @@
 |
 */
 
+/**
+ * User needs to be authenticated to visit this routes
+ */
+Route::group(['middleware' => 'auth'], function () {
+    //post create form and submitting
+    Route::get('/posts/create', 'PostsController@create')->name('newPost');
+    Route::post('/posts', 'PostsController@store');
 
-Route::get('/', 'PostsController@index');
-Route::get('/posts/create', 'PostsController@create');
-Route::post('/posts', 'PostsController@store');
+    //post comment
+    Route::post('/posts/{id}/comments', 'CommentsController@store');
+
+    //logout
+    Route::get('/logout', 'Auth\SessionsController@destroy')->name('logout');
+});
+
+//posts index and single post page
+Route::get('/', 'PostsController@index')->name('home');
 Route::get('/posts/{post}', 'PostsController@show');
-//get comments
-Route::post('/posts/{id}/comments', 'CommentsController@store');
 
-//show slug
-Route::get('/{post}', 'PostsController@showSlug');
+//registration
+Route::get('/register', 'Auth\RegisterController@create')->name('register');
+Route::post('/register', 'Auth\RegisterController@store');
 
+//login
+Route::get('/login', 'Auth\SessionsController@create')->name('login');
+Route::post('/login', 'Auth\SessionsController@store');

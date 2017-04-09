@@ -13,7 +13,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->get();
+        $posts = Post::orderBy('created_at', 'desc')->get();
 
         return view('posts.index', compact('posts'));
     }
@@ -25,15 +25,6 @@ class PostsController extends Controller
     {
         $post = Post::find($id);
         return view('posts.show', compact('post'));
-    }
-
-    /**
-     * Show single post by slug
-     * This method use Route model binding
-     */
-    public function showSlug(Post $post)
-    {
-        return view('posts.showSlug', compact('post'));
     }
 
     /**
@@ -54,11 +45,14 @@ class PostsController extends Controller
             'body' => 'required'
         ]);
 
+        //auth()->user()-publish(post)
+
         //ensure that title and body are columns in your database for Post
         Post::create([
             'title' => $request->input('title'),
             'body' => $request->input('body'),
-            'slug' => str_slug($request->input('title'))
+            'slug' => str_slug($request->input('title')),
+            'user_id' => auth()->user()->id
         ]);
 
         return redirect('/');

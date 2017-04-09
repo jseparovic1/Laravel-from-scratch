@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="@yield('description')">
-    <meta name="author" content="Jurica Šeparovic">
 
     <title>@yield('title')</title>
 
@@ -16,13 +15,15 @@
 
 <div class="blog-header">
     <div class="container">
-        @include('layout.header')
+        <h1 class="blog-title">
+            @yield('blog-title')
+        </h1>
     </div>
 </div>
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-8 blog-main">
+        <div class="col-sm-9 col-md-7 blog-main">
             @yield('content')
         </div>
 

@@ -1,12 +1,7 @@
 @extends('layout.master')
 
-@section('title')
-    {{ $post->title }}
-@endsection
-
-@section('description')
-    {{ $post->title }}
-@endsection
+@section('description', $post->title)
+@section('blog-title', 'Awesome post')
 
 {{--Show signle post--}}
 @section('content')
@@ -16,12 +11,19 @@
                 {{ $post->title }}
             </h2>
             <p class="blog-post-meta">
+                <i> {{ ucwords($post->user->name) }} </i> at
                 {{ $post->created_at->toFormattedDateString() }}
             </p>
             <p> {{ $post->body }} </p>
             <hr>
-            @include('posts.comment')
-            @include('posts.commentForm')
         </div><!-- /.blog-post -->
+
+        @include('posts.comment')
+
+        {{--Allow user to comment if he is logged in--}}
+        @if(Auth::check())
+            @include('posts.commentForm')
+        @endif
+
     </div>
 @endsection

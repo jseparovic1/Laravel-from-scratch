@@ -16,6 +16,8 @@ class CommentsController extends Controller
        $post = Post::findOrFail($id);
        $post->addComment($request->get('body'));
 
+       $request->session()->flash('status', 'Task was successful!');
+
        return redirect()->back();
    }
 }

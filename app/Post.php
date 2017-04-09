@@ -23,12 +23,22 @@ class Post extends Model
     }
 
     /**
-     * Add new comment for given post
+     * Returns user that published post
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
      * @param $body comment body
      */
     public function addComment($body)
     {
-        //this line also populate post_id in comment db table
-        $this->comments()->create(['body' => $body ]);
+        //this line also add post_id in comments db table
+        $this->comments()->create([
+            'body' => $body,
+            'user_id' => auth()->user()->id
+        ]);
     }
 }
