@@ -24,10 +24,10 @@ class RegisterController extends Controller
     /**
      * Register user
      */
-    public function store(Request $request)
+    public function store()
     {
         //validate request data
-        $this->validate($request, [
+        $this->validate(request(), [
             'email' => 'required|email',
             'password' => 'required|confirmed|min:3',
             'name' => 'required|min:2'
@@ -35,9 +35,9 @@ class RegisterController extends Controller
 
         //create user
         $user = User::create([
-            'email' => $request->get('email'),
-            'password' => bcrypt(request()->get('password')),
-            'name' => $request->get('email')
+            'email' => request('email'),
+            'password' => bcrypt(request('password')),
+            'name' => request('email')
         ]);
 
         //log in user | we can use facade auth also

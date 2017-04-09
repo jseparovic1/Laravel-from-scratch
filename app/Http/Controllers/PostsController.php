@@ -14,6 +14,7 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Post::orderBy('created_at', 'desc')->get();
+        $archive = $this->loadArchive();
 
         return view('posts.index', compact('posts'));
     }
@@ -38,23 +39,22 @@ class PostsController extends Controller
     /**
      *  Store post
      */
-    public function store(Request $request)
+    public function store()
     {
-        $this->validate($request, [
+        $this->validate(request(), [
             'title' => 'required|max:255|min:5',
             'body' => 'required'
         ]);
 
-        //auth()->user()-publish(post)
-
-        //ensure that title and body are columns in your database for Post
-        Post::create([
-            'title' => $request->input('title'),
-            'body' => $request->input('body'),
-            'slug' => str_slug($request->input('title')),
-            'user_id' => auth()->user()->id
-        ]);
+        auth()->user()->publish(
+            new Post(request(['title', 'body']))
+        );
 
         return redirect('/');
+    }
+
+    protected function loadArchive()
+    {
+
     }
 }
