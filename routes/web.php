@@ -37,3 +37,5 @@ Route::post('/register', 'Auth\RegisterController@store');
 //login
 Route::get('/login', 'Auth\SessionsController@create')->name('login');
 Route::post('/login', 'Auth\SessionsController@store');
+
+Route::post('/testRoute', 'Auth\SessionsController@store');
