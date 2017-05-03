@@ -20,7 +20,6 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-
         $first = factory(Post::class)->create([
             'created_at' => Carbon::now()->subMonth()
         ]);
@@ -33,12 +32,12 @@ class ExampleTest extends TestCase
 
         $this->assertEquals([
             [
-                "month" => $first->created_at->month,
+                "month" => $first->created_at->formatLocalized('%B'),
                 "year" => $first->created_at->year,
                 "published" => 1
             ],
             [
-                "month" => $second->created_at->month,
+                "month" => $second->created_at->formatLocalized('%B'),
                 "year" => $second->created_at->year,
                 "published" => 1
             ]
