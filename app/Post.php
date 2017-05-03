@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+
 use Carbon\Carbon;
 
 /**
@@ -57,5 +58,16 @@ class Post extends Model
         }
 
         return $query;
+    }
+
+    public static function archives()
+    {
+        return static::selectRaw(
+            'monthname(created_at) as month,
+	         year(created_at) as year,
+	         count(*) as published')
+            ->groupBy('year', 'month')
+            ->orderByRaw('min(created_at)')
+            ->get();
     }
 }
