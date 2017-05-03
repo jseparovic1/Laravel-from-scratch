@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Post;
 use Illuminate\Support\Facades\Redirect;
+use App\Post;
 
 class PostsController extends Controller
 {
@@ -13,11 +13,17 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->get();
+        $posts = Post::latest()->filter(request(['year','month']))->get();
 
+        $archives = Post::selectRaw(
+            'monthname(created_at) as month,
+	         year(created_at) as year,
+	         count(*) as published')
+            ->groupBy('year', 'month')
+            ->orderByRaw('min(created_at)')
+            ->get();
 
-
-        return view('posts.index', compact('posts'));
+        return view('posts.index', compact('posts', 'archives'));
     }
 
     /**
@@ -52,10 +58,5 @@ class PostsController extends Controller
         );
 
         return redirect('/');
-    }
-
-    protected function loadArchive()
-    {
-
     }
 }

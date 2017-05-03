@@ -6,6 +6,13 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Post;
 
+/**
+ * App\User
+ *
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Post[] $posts
+ * @mixin \Eloquent
+ */
 class User extends Authenticatable
 {
     use Notifiable;

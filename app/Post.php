@@ -1,7 +1,15 @@
 <?php
 
 namespace App;
+use Carbon\Carbon;
 
+/**
+ * App\Post
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Comment[] $comments
+ * @property-read \App\User $user
+ * @mixin \Eloquent
+ */
 class Post extends Model
 {
     /**
@@ -30,5 +38,24 @@ class Post extends Model
             'body' => $body,
             'user_id' => auth()->user()->id
         ]);
+    }
+
+    /**
+     * Scope a query to only include posts in selected month users.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param $filters
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFilter($query , $filters)
+    {
+        if ($month = $filters['month']) {
+            $query->whereMonth('created_at', Carbon::parse($month)->month);
+        }
+        if ($year = $filters['year']) {
+            $query->whereYear('created_at', $year);
+        }
+
+        return $query;
     }
 }

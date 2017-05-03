@@ -2,6 +2,13 @@
 
 namespace App;
 
+/**
+ * App\Comment
+ *
+ * @property-read \App\User $author
+ * @property-read \App\Post $post
+ * @mixin \Eloquent
+ */
 class Comment extends Model
 {
     /**
