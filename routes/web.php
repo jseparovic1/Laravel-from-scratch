@@ -11,6 +11,14 @@
 |
 */
 
+App::bind('App\Users', function () {
+    return new App\User;
+});
+
+$user = App::make('App\Users');
+
+dd($user);
+
 /**
  * User needs to be authenticated to visit this routes
  */
