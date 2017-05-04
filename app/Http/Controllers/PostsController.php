@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Posts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Post;
@@ -11,11 +12,11 @@ class PostsController extends Controller
     /**
      * Show latest posts
      */
-    public function index()
+    public function index(Posts $posts)
     {
-        $posts = Post::latest()->filter(request(['year','month']))->get();
+        $posts = $posts->all();
 
-        return view('posts.index', compact('posts', 'archives'));
+        return view('posts.index', compact('posts'));
     }
 
     /**
