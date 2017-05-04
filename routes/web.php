@@ -11,7 +11,7 @@
 |
 */
 
-App::bind('App\Users', function () {
+App::singleton('App\Users', function () {
     return new App\User;
 });
 
