@@ -12,15 +12,13 @@ class UserRegistered extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /*
-     * All public properties are avalible for email view
-     */
+    //public properties can be used inside view
     public $user;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($user)
+    public function __construct(User $user)
     {
         $this->user = $user;
     }
@@ -32,6 +30,6 @@ class UserRegistered extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.welcome');
+        return $this->markdown('emails.welcome');
     }
 }

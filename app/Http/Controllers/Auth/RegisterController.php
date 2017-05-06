@@ -45,6 +45,8 @@ class RegisterController extends Controller
 
         //log in user | we can use facade auth also
         \Auth::login($user);
+
+        //send welcome email to user
         Mail::to($user)->send(new UserRegistered($user));
 
         //redirect to home

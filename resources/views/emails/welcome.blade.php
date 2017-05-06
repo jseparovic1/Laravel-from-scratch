@@ -1,9 +1,19 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>New fucking email</title>
-    </head>
-    <body>
-        <p> Hi man! {{ $user->name }}</p>
-    </body>
-</html>
+@component('mail::message')
+# Introduction
+
+Welcome to virtual noob {{ $user->name }}
+
+@component('mail::button', ['url' => ''])
+Dont't be noob anyomore start browsing
+@endcomponent
+
+@component('mail::table')
+    | Laravel       | Table         | Example  |
+    | ------------- |:-------------:| --------:|
+    | Col 2 is      | Centered      | test     |
+    | Col 3 is      | Right-Aligned | test     |
+@endcomponent
+
+Thanks,<br>
+{{ config('app.name') }}
+@endcomponent
