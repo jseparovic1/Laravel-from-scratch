@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Post;
+use App\Repositories\Posts;
 use Illuminate\Support\ServiceProvider;
 
 
@@ -30,6 +32,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        //we can listen to object resolving
+        $this->app->resolving(function ($object, $app) {
+            echo "resolving object";
+            if ($object instanceof Posts) {
+                dd($object);
+            }
+        });
     }
 }

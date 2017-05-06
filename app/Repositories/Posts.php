@@ -10,6 +10,6 @@ class Posts
     {
         return Post::latest()
             ->filter(request(['year','month']))
-            ->get();;
+            ->get();
     }
 }
