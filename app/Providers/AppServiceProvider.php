@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if ($this->app->environment() != 'production') {
+        if ($this->app->environment() !== 'production') {
             /**
              * Laravel debug bar
              */
@@ -32,12 +32,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //we can listen to object resolving
-        $this->app->resolving(function ($object, $app) {
-            echo "resolving object";
-            if ($object instanceof Posts) {
-                dd($object);
-            }
-        });
+
     }
 }
