@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\UserRegistered;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
 
 class RegisterController extends Controller
 {
@@ -41,7 +44,8 @@ class RegisterController extends Controller
         ]);
 
         //log in user | we can use facade auth also
-        auth()->login($user);
+        \Auth::login($user);
+        Mail::to($user)->send(new UserRegistered($user));
 
         //redirect to home
         return redirect()->route('home');
