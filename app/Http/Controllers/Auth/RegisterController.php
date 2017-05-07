@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterUser;
 use App\Mail\UserRegistered;
 use App\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 
@@ -27,15 +27,8 @@ class RegisterController extends Controller
     /**
      * Register user
      */
-    public function store()
+    public function store(RegisterUser $request)
     {
-        //validate request data
-        $this->validate(request(), [
-            'email' => 'required|email',
-            'password' => 'required|confirmed|min:3',
-            'name' => 'required|min:2'
-        ]);
-
         //create user
         $user = User::create([
             'email' => request('email'),
