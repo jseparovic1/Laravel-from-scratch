@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\RegisterUser;
 use App\Mail\UserRegistered;
 use App\User;
-use Validator;
 use Illuminate\Support\Facades\Mail;
 
 
@@ -28,18 +27,8 @@ class RegisterController extends Controller
     /**
      * Register user
      */
-    public function store(Request $request)
+    public function store(RegisterUser $request)
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed|min:3',
-            'name' => 'required|min:2'
-        ]);
-
-        if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
-        }
-        
         //create user
         $user = User::create([
             'email' => request('email'),
