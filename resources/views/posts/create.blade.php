@@ -12,7 +12,7 @@
 
         <div class="form-group">
             <label for="Blog text">Body:</label>
-            <input type="text" class="form-control" id="post-body" name="body" placeholder="Enter text">
+            <textarea class="form-control" id="post-body" name="body" placeholder="Enter text" rows="3"></textarea>
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Publish</button>

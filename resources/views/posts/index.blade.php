@@ -20,7 +20,7 @@
                 </p>
                 <p> {{ $post->body }} </p>
                 <hr>
-                {{--@include('posts.comment')--}}
+                @include('posts.comment')
             </div><!-- /.blog-post -->
         </div>
     @endforeach
