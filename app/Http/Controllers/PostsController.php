@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PostCreated;
 use App\Repositories\Posts;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Session;
 use App\Post;
 
 class PostsController extends Controller
@@ -46,10 +47,13 @@ class PostsController extends Controller
             'body' => 'required'
         ]);
 
-        auth()->user()->publish(
-            new Post(request(['title', 'body']))
-        );
+        $post = new Post(request(['title', 'body']));
 
-        return redirect('/');
+        auth()->user()->publish($post);
+
+        //dispatch post created event
+        Event::dispatch(new PostCreated($post));
+
+        return redirect()->route('home');
     }
 }

@@ -4,6 +4,9 @@
 @section('blog-title', 'The blog')
 @section('description', 'Posts website, get fresh news from tech all day and night')
 
+{{--flash messages--}}
+@include('layout.notice')
+
 {{-- main post layout --}}
 @section('content')
     @foreach($posts as $post)

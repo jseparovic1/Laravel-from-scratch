@@ -181,6 +181,15 @@ h6, .h6 {
   color: #999;
 }
 
+/*
+ * Notice
+ */
+.notice {
+  position: absolute;
+  z-index: 10;
+  margin-right: 0;
+  padding: 10px 10px;
+}
 
 /*
  * Footer
