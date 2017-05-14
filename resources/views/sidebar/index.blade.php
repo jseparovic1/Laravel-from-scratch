@@ -9,6 +9,10 @@
     </div>
 
     <div class="sidebar-module">
+        @include('sidebar.tags')
+    </div>
+
+    <div class="sidebar-module">
         @include('sidebar.links')
     </div>
 </div>

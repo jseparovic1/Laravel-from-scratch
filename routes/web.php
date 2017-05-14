@@ -27,8 +27,11 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 //posts index and single post page
-Route::get('/', 'PostsController@index')->name('home');
+Route::get('/', 'PostsController@index')->name( 'home');
 Route::get('/posts/{post}', 'PostsController@show');
+
+//post tags
+Route::get('/posts/tag/{tag}', 'TagsController@index');
 
 //registration
 Route::get('/register', 'Auth\RegisterController@create')->name('register');
@@ -38,4 +41,3 @@ Route::post('/register', 'Auth\RegisterController@store');
 Route::get('/login', 'Auth\SessionsController@create')->name('login');
 Route::post('/login', 'Auth\SessionsController@store');
 
-Route::post('/testRoute', 'Auth\SessionsController@store');

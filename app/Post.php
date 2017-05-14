@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+use App\Tag;
 
 /**
  * App\Post
@@ -18,7 +19,12 @@ class Post extends Model
      */
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class, 'post_id');
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'post_tag', 'post_id', 'tag_id');
     }
 
     /**
@@ -26,7 +32,7 @@ class Post extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     /**

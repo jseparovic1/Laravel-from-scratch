@@ -10,6 +10,11 @@
             <h2 class="blog-post-title">
                 {{ $post->title }}
             </h2>
+            <p class="tags">
+               @foreach ($post->tags as $tag)
+                    <i>{{ $tag->name  }}</i>
+               @endforeach
+            </p>
             <p class="blog-post-meta">
                 <i> {{ ucwords($post->user->name) }} </i> at
                 {{ $post->created_at->toFormattedDateString() }}
