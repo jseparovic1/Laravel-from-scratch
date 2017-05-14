@@ -17,6 +17,11 @@
                         {{ $post->title }}
                     </a>
                 </h2>
+                <p class="tags">
+                    @foreach ($post->tags as $tag)
+                        <a href="/posts/tag/{{ $tag->name }}"> {{ $tag->name  }}</a>
+                    @endforeach
+                </p>
                 <p class="blog-post-meta">
                     <i> {{ ucwords($post->user->name) }} </i> at
                     {{ $post->created_at->toFormattedDateString() }}

@@ -12,7 +12,7 @@
             </h2>
             <p class="tags">
                @foreach ($post->tags as $tag)
-                    <i>{{ $tag->name  }}</i>
+                    <a href="/posts/tag/{{ $tag->name }}"> {{ $tag->name  }}</a>
                @endforeach
             </p>
             <p class="blog-post-meta">
